@@ -30,9 +30,9 @@ Under the root folder, please execute `> ./naturalsym <target.scala> <target.con
 - Limited by the back-end symbolic execution engine, the target method must be `execute` and input arguments must be of the shape `RDD[String]`. Please see our template in `template.scala`.
 - The configuration file format is shown below. In general, each line of the configuration file declares user knowledge about each column from a input table delimited by "|". User knowledge can be none, an example list, Gaussian distribution, uniform distribution, or any distribution supported by Python scipy library.
 ```
-<config>     :=     "" \quad | \quad <config> "$\backslash$n" <tab>
+<config>     :=     ""    |   <config> "\n" <tab>
 <tab>        :=     <tab-name> ":=" <cols>
-<cols>       :=     "" \quad | \quad <cols> "|" <col>
+<cols>       :=     ""    |   <cols> "|" <col>
 <col>        :=     <none> | <examples> | <uniform> | <gaussian> | <trunc-gaussian> | <scipy-distr>
 <none>       :=     ""
 <examples>   :=     Discrete(<examples-delimited-by-comma>)
@@ -45,4 +45,4 @@ Under the root folder, please execute `> ./naturalsym <target.scala> <target.con
 # Run our benchmark (Optional)
 Users can run `> ./NaturalSym/scripts/run1.sh <bench>` to run a subject program from our benchmark suite. `<bench>` should be one of `airport,movie1,usedcars,transit,credit,Q1,Q3,Q6,Q7,Q12,Q15,Q19,Q20`.
 
-For example, `> ./NaturalSym/scripts/run1.sh airport` will run NatualSym for `NaturalSym/newbench/src/airport/airport.scala` with the configuration file `NaturalSym/newbench/config`. Generated tests are under `NaturalSym/newbench/geninputs/airport`.
+For example, `> ./NaturalSym/scripts/run1.sh airport` will run NatualSym for `NaturalSym/newbench/src/airport/airport.scala` with the configuration file `NaturalSym/newbench/config/airport.config`. Generated tests are under `NaturalSym/newbench/geninputs/airport`.
