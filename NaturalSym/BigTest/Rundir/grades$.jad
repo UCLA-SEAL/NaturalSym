@@ -1,0 +1,142 @@
+// Decompiled by Jad v1.5.8e. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.geocities.com/kpdus/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   grades.scala
+
+import org.apache.spark.SparkConf;
+import org.apache.spark.SparkContext;
+import org.apache.spark.rdd.*;
+import scala.*;
+import scala.collection.immutable.List$;
+import scala.collection.immutable.StringOps;
+import scala.math.Ordering;
+import scala.reflect.ClassTag$;
+import scala.runtime.*;
+
+public final class grades$
+{
+
+    public SparkConf conf()
+    {
+        return conf;
+    }
+
+    public SparkContext sc()
+    {
+        return sc;
+    }
+
+    public void main(String args[])
+    {
+        RDD maths = sc().parallelize(List$.MODULE$.apply(Predef$.MODULE$.wrapRefArray((Object[])(new String[] {
+            "alice,90", "bob,10"
+        }))), sc().parallelize$default$2(), ClassTag$.MODULE$.apply(java/lang/String));
+        RDD physics = sc().parallelize(List$.MODULE$.apply(Predef$.MODULE$.wrapRefArray((Object[])(new String[] {
+            "alice,10", "bob,20"
+        }))), sc().parallelize$default$2(), ClassTag$.MODULE$.apply(java/lang/String));
+        execute(maths, physics);
+    }
+
+    public Object execute(RDD input1, RDD input2)
+    {
+        RDD maths = input1.map(new Serializable() {
+
+            public final Tuple2 apply(String row)
+            {
+                return new Tuple2(row.split(",")[0], BoxesRunTime.boxToInteger((new StringOps(Predef$.MODULE$.augmentString(row.split(",")[1]))).toInt()));
+            }
+
+            public final volatile Object apply(Object v1)
+            {
+                return apply((String)v1);
+            }
+
+            public static final long serialVersionUID = 0L;
+
+        }, ClassTag$.MODULE$.apply(scala/Tuple2));
+        RDD physics = input2.map(new Serializable() {
+
+            public final Tuple2 apply(String row)
+            {
+                return new Tuple2(row.split(",")[0], BoxesRunTime.boxToInteger((new StringOps(Predef$.MODULE$.augmentString(row.split(",")[1]))).toInt()));
+            }
+
+            public final volatile Object apply(Object v1)
+            {
+                return apply((String)v1);
+            }
+
+            public static final long serialVersionUID = 0L;
+
+        }, ClassTag$.MODULE$.apply(scala/Tuple2));
+        RDD joined_math_physics = RDD$.MODULE$.rddToPairRDDFunctions(maths, ClassTag$.MODULE$.apply(java/lang/String), ClassTag$.MODULE$.Int(), scala.math.Ordering.String..MODULE$).join(physics);
+        RDD sum_grades = joined_math_physics.map(new Serializable() {
+
+            public final Tuple2 apply(Tuple2 row)
+            {
+                String name = (String)row._1();
+                int math = ((Tuple2)row._2())._1$mcI$sp();
+                int physics = ((Tuple2)row._2())._2$mcI$sp();
+                return new Tuple2(name, BoxesRunTime.boxToInteger(math + physics));
+            }
+
+            public final volatile Object apply(Object v1)
+            {
+                return apply((Tuple2)v1);
+            }
+
+            public static final long serialVersionUID = 0L;
+
+        }, ClassTag$.MODULE$.apply(scala/Tuple2));
+        RDD filtered_rows = sum_grades.filter(new Serializable() {
+
+            public final boolean apply(Tuple2 row)
+            {
+                String name = (String)row._1();
+                int total = row._2$mcI$sp();
+                return total < 60;
+            }
+
+            public final volatile Object apply(Object v1)
+            {
+                return BoxesRunTime.boxToBoolean(apply((Tuple2)v1));
+            }
+
+            public static final long serialVersionUID = 0L;
+
+        });
+        filtered_rows.foreach(new Serializable() {
+
+            public final void apply(Object x)
+            {
+                Predef$.MODULE$.println(x);
+            }
+
+            public final volatile Object apply(Object v1)
+            {
+                apply(v1);
+                return BoxedUnit.UNIT;
+            }
+
+            public static final long serialVersionUID = 0L;
+
+        });
+        return BoxedUnit.UNIT;
+    }
+
+    private grades$()
+    {
+        conf().setMaster("local[*]");
+        conf().setAppName("CommuteTime");
+        sc().setLogLevel("ERROR");
+    }
+
+    public static final grades$ MODULE$ = this;
+    private final SparkConf conf = new SparkConf();
+    private final SparkContext sc = new SparkContext(conf());
+
+    static 
+    {
+        new grades$();
+    }
+}

@@ -1,0 +1,14 @@
+target=reduce1
+
+classpath=/Users/malig/workspace/up_jpf/jpf-symbc/src/examples/arrays/
+#sourcepath=${jpf-symbc}/src/examples
+
+symbolic.method=reduce1.applyReduce(sym)
+
+#symbolic.debug=true
+
+listener = gov.nasa.jpf.symbc.SymbolicListener
+#listener = gov.nasa.jpf.symbc.sequences.SymbolicSequenceListener #for test-case generation
+symbolic.dp=no_solver
+symbolic.lazy=on
+symbolic.arrays=true

@@ -1,0 +1,1 @@
+{"name":"sbt","version":"1.8.2","bspVersion":"2.1.0-M1","languages":["scala"],"argv":["/mnt/ssd/thaddywu/.bin/openlogic-openjdk-8u352-b08-linux-x64/jre/bin/java","-Xms100m","-Xmx100m","-classpath","/mnt/ssd/thaddywu/.cache/sbt/boot/sbt-launch/1.8.2/sbt-launch-1.8.2.jar","-Dsbt.script=/usr/bin/sbt","xsbt.boot.Boot","-bsp"]}

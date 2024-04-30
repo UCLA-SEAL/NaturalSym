@@ -1,0 +1,31 @@
+<project name="UDFExtractor" default="build">
+
+    <!-- 定义路径变量 -->
+    <property name="src.dir" value="src" />
+    <property name="bin.dir" value="bin" />
+
+    <!-- 清理目标文件和 JAR 文件 -->
+    <target name="clean">
+        <delete dir="${bin.dir}" />
+    </target>
+
+    <!-- 编译 Java 文件 -->
+    <target name="compile">
+        <mkdir dir="${bin.dir}" />
+        <javac srcdir="${src.dir}" destdir="${bin.dir}" includeantruntime="false" />
+    </target>
+
+    <!-- 构建 udfExtractor.jar -->
+    <target name="jar" depends="compile">
+        <mkdir dir="${bin.dir}/tmp" />
+        <copy todir="${bin.dir}/tmp">
+            <fileset dir="${bin.dir}" includes="**/*.class" />
+        </copy>
+        <jar destfile="${bin.dir}/udfExtractor.jar" basedir="${bin.dir}/tmp" />
+        <delete dir="${bin.dir}/tmp" />
+    </target>
+
+    <!-- 默认目标 -->
+    <target name="build" depends="jar" />
+
+</project>

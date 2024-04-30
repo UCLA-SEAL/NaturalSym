@@ -1,0 +1,27 @@
+Generated tests for Path1 in /home/thaddywu/Github_NaturalSym/NaturalSym/BigTest/Rundir/1.smt2
+
+[input1.csv]
+bob,9
+[input2.csv]
+bob,45
+
+
+
+Generated tests for Path2 in /home/thaddywu/Github_NaturalSym/NaturalSym/BigTest/Rundir/2.smt2
+
+[input1.csv]
+alice,13
+[input2.csv]
+,66
+
+
+
+Generated tests for Path3 in /home/thaddywu/Github_NaturalSym/NaturalSym/BigTest/Rundir/3.smt2
+
+[input1.csv]
+alice,15
+[input2.csv]
+alice,66
+
+
+

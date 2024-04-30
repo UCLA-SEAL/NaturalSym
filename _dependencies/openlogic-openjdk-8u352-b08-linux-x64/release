@@ -1,0 +1,5 @@
+JAVA_VERSION="1.8.0_352"
+OS_NAME="Linux"
+OS_VERSION="2.6"
+OS_ARCH="amd64"
+SOURCE=".:git:dfa5f14848df+ openjfx-8u-dev-rt:git:7151a8c1525f rt:git:17eba21ed3fe+"
