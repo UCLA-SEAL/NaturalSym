@@ -1,4 +1,4 @@
-NaturalSym, proposed in *Natural Symbolic Execution-based Testing for Big Data Analytics (FSE24)*, is a symbolic execution-based tool to generate natural tests for big data analytics. To replicate our evaluation, please go to https://zenodo.org/records/10373292.
+NaturalSym, proposed in *Natural Symbolic Execution-based Testing for Big Data Analytics (FSE24)*, is a symbolic execution-based tool to generate natural tests for big data analytics. To replicate our evaluation, please go to https://zenodo.org/records/11090237.
 
 # Installation
 Users can download NaturalSym from github. Ubuntu>=20.04 with Python>=3.12 are suggested.
