@@ -26,7 +26,7 @@ alice,34
 
 # Try it yourself!
 
-Under the root folder, please execute `> ./naturalsym <target.scala> <target.config>`. You'll see the output in both console and `<target.tests>`. 
+Under the root folder, please execute `> ./naturalsym.sh <target.scala> <target.config>`. You'll see the output in both console and `<target.tests>`. 
 - Limited by the back-end symbolic execution engine, the target method must be `execute` and input arguments must be of the shape `RDD[String]`. Please see our template in `template.scala`.
 - The configuration file format is shown below. In general, each line of the configuration file declares user knowledge about each column from a input table delimited by "|". User knowledge can be none, an example list, Gaussian distribution, uniform distribution, or any distribution supported by Python scipy library.
 ```
